@@ -17,6 +17,7 @@
 	Select.fn.render = function(){
 
 		this.el = document.createElement( 'div' );
+		this.el.className = this.el.className + ' ' + this.config.className;
 
 		this.picker = document.createElement('select');
 		this.picker.multiple = true;
@@ -67,6 +68,18 @@
 		return optionsString;
 	};
 
+	Select.fn.deselectAll = function(){
+		var filteredOptions = this.getFilterOptions();
+
+		this.getFilterOptions().forEach(function( option ){
+			option.selected = false;
+		});
+
+		this.options.forEach(function( option ){
+			option.selected = false;
+		});
+	};
+
 	Select.fn.updateOptionsFromDom = function(){
 		var domOptions = Array.prototype.slice.call( this.picker.options );
 		this.options = domOptions.map(function( opt ){
@@ -86,6 +99,7 @@
 	};
 
 	Select.fn.buttonClicked = function( evt ){
+		this.updateOptionsFromDom();
 		this.config.buttonAction.call( this.dlInstance, this.getSelectedOptions() );
 	};
 
@@ -102,8 +116,11 @@
 		var buttonListener = Utils.attachEventListener( this.pickerButton, 'click', this.buttonClicked.bind( this ) );
 		this._listeners.push( buttonListener );
 
-		var pickerListener = Utils.attachEventListener( this.picker, 'click', this.updateOptionsFromDom.bind( this ) );
-		this._listeners.push( pickerListener );
+		// var pickerListener = Utils.attachEventListener( this.picker, 'click', this.updateOptionsFromDom.bind( this ) );
+		// this._listeners.push( pickerListener );
+
+		var pickerDblClickListener = Utils.attachEventListener( this.picker, 'dblclick', this.buttonClicked.bind( this ) );
+		this._listeners.push( pickerDblClickListener );
 
 		var searchBoxListener = Utils.attachEventListener( this.searchBox, 'search', this.searchSubmitted.bind( this ) );
 		this._listeners.push( searchBoxListener );

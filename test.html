@@ -2,9 +2,12 @@
 <html>
 <head>
 	<title>Workbench</title>
+	<link rel="stylesheet" type="text/css" href="dual-list-picker.css">
+
 	<script type="text/javascript" src="dual-list-picker.js"></script>
-	<script type="text/javascript" src="utils.js"></script>
-	<script type="text/javascript" src="multi-select-box.js"></script>
+	<script type="text/javascript" src="dual-list-picker-utils.js"></script>
+	<script type="text/javascript" src="dual-list-picker-constants.js"></script>
+	<script type="text/javascript" src="dual-list-picker-select-box.js"></script>
 </head>
 <body>
 
@@ -15,7 +18,7 @@
  		var selectOptions = [];
  		var _i = 0;
 
- 		while ( _i < 15000 ){
+ 		while ( _i < 20000 ){
  			_i++
  			selectOptions.push({
  				displayName: 'Option ' + _i,

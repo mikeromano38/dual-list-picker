@@ -1,0 +1,37 @@
+.dual-list-picker {
+	width: 100%;
+}
+
+.dual-list-picker:after {
+	content: '';
+	display: table-cell;
+	clear: both;
+}
+
+.dual-list-picker [class$='select-box'] {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: calc( 50% - 22px );
+}
+
+.dual-list-picker [class$='select-box'] option {
+	padding-left: 10px;
+}
+
+.dual-list-picker [class$='select-box'] select[multiple],
+.dual-list-picker [class$='select-box'] button,
+.dual-list-picker [class$='select-box'] input[type='search'] {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.dual-list-picker [class$='select-box'] select[multiple] {
+	width: 100%;
+	min-height: 200px;
+}
+
+.dual-list-picker [class$='select-box'] input[type='search'],
+.dual-list-picker [class$='select-box'] button {
+	float: right;
+}

@@ -55,16 +55,20 @@ var DualListPicker = (function(){
 
 		Picker.fn.render = function(){
 
+			this.el.className = this.el.className + ' ' + DualListPicker.Constants.PICKER_CLASSNAME;
+
 			this.availablePicker = new Picker.MultiSelectBox( this, {
 				buttonText: this.config.addButtonText,
 				buttonAction: this.moveItems( 'selected' ),
-				placeHolderText: this.config.placeHolderText
+				placeHolderText: this.config.placeHolderText,
+				className: 'available-' + DualListPicker.Constants.SELECTBOX_CLASSNAME
 			});
 
 			this.selectedPicker = new Picker.MultiSelectBox( this, {
 				buttonText: this.config.removeButtonText,
 				buttonAction: this.moveItems( 'available' ),
-				placeHolderText: this.config.placeHolderText
+				placeHolderText: this.config.placeHolderText,
+				className: 'selected-' + DualListPicker.Constants.SELECTBOX_CLASSNAME
 			});
 
 			this.el.appendChild( this.availablePicker.el, this.el );
