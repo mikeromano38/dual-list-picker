@@ -2,7 +2,6 @@
 
 	var Select = function( instance, config ){
 		this._listeners = [];
-		debugger
 		this.dlInstance = instance;
 		this._initialize( config );
 		this.render();
@@ -16,19 +15,46 @@
 	};
 
 	Select.fn.render = function(){
+
 		this.el = document.createElement( 'div' );
+
 		this.picker = document.createElement('select');
 		this.picker.multiple = true;
+
+		this.searchBox = document.createElement('input')
+		this.searchBox.type = 'search';
+		this.searchBox.placeholder = this.config.placeHolderText || 'Search';
+
 		this.pickerButton = document.createElement('button');
 		this.pickerButton.innerText = this.config.buttonText;
 		
+		this.el.appendChild( this.searchBox );
 		this.el.appendChild( this.picker );
 		this.el.appendChild( this.pickerButton );
+
+	};
+
+	Select.fn.updateFilterOptions = function( searchText ){
+		var self = this;
+
+		this.filterActive = !!searchText;
+		this.filterText = searchText;
+		
+		this.filterOptions = this.options.filter(function( opt ){
+			return opt.displayName.match( self.filterText );
+		});
+	};
+
+	Select.fn.getFilterOptions = function(){
+		return this.filterOptions;
 	};
 
 	Select.fn.refresh = function(){
+		this.updateFilterOptions( this.filterText );
+		var options = ( this.filterActive ) ? this.getFilterOptions() : this.options;
+
 		this.picker.innerHTML = '';
-		this.picker.innerHTML = this.generateOptionsStringFromOptions( this.options );
+		this.picker.innerHTML = this.generateOptionsStringFromOptions( options );
 	};
 
 	Select.fn.generateOptionsStringFromOptions = function( options ){
@@ -63,6 +89,11 @@
 		this.config.buttonAction.call( this.dlInstance, this.getSelectedOptions() );
 	};
 
+	Select.fn.searchSubmitted = function( evt ){
+		this.updateFilterOptions( this.searchBox.value );
+		this.refresh();
+	};
+
 	Select.fn.setOptions = function( options ){
 		this.options = options;
 	};
@@ -73,6 +104,9 @@
 
 		var pickerListener = Utils.attachEventListener( this.picker, 'click', this.updateOptionsFromDom.bind( this ) );
 		this._listeners.push( pickerListener );
+
+		var searchBoxListener = Utils.attachEventListener( this.searchBox, 'search', this.searchSubmitted.bind( this ) );
+		this._listeners.push( searchBoxListener );
 	};
 
 	Select.fn.removeAllListeners = function(){

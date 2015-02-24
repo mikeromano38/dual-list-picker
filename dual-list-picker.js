@@ -57,12 +57,14 @@ var DualListPicker = (function(){
 
 			this.availablePicker = new Picker.MultiSelectBox( this, {
 				buttonText: this.config.addButtonText,
-				buttonAction: this.moveItems( 'selected' )
+				buttonAction: this.moveItems( 'selected' ),
+				placeHolderText: this.config.placeHolderText
 			});
 
 			this.selectedPicker = new Picker.MultiSelectBox( this, {
 				buttonText: this.config.removeButtonText,
-				buttonAction: this.moveItems( 'available' )
+				buttonAction: this.moveItems( 'available' ),
+				placeHolderText: this.config.placeHolderText
 			});
 
 			this.el.appendChild( this.availablePicker.el, this.el );
