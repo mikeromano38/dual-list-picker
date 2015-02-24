@@ -1,4 +1,4 @@
-(function( DualListPicker, Utils ){
+(function( DualListPicker, Utils, Constants ){
 
 	var Select = function( instance, config ){
 		this._listeners = [];
@@ -11,6 +11,7 @@
 	Select.fn = Select.prototype;
 
 	Select.fn._initialize = function( config ){
+		this.options = [];
 		this.config = config
 	};
 
@@ -22,6 +23,10 @@
 		this.picker = document.createElement('select');
 		this.picker.multiple = true;
 
+		this.filterLabel = document.createElement('span');
+		this.filterLabel.className = Constants.FILTER_LABEL_CLASSNAME;
+		this.filterLabel.innerText = this.getFilterLabelText();
+
 		this.searchBox = document.createElement('input')
 		this.searchBox.type = 'search';
 		this.searchBox.placeholder = this.config.placeHolderText || 'Search';
@@ -30,6 +35,7 @@
 		this.pickerButton.innerText = this.config.buttonText;
 		
 		this.el.appendChild( this.searchBox );
+		this.el.appendChild( this.filterLabel );
 		this.el.appendChild( this.picker );
 		this.el.appendChild( this.pickerButton );
 
@@ -46,6 +52,12 @@
 		});
 	};
 
+	Select.fn.getFilterLabelText = function(){
+		if ( this.options ){
+			return this.config.labelText + ' (' + this.options.length + ')';
+		}
+	};
+
 	Select.fn.getFilterOptions = function(){
 		return this.filterOptions;
 	};
@@ -56,6 +68,8 @@
 
 		this.picker.innerHTML = '';
 		this.picker.innerHTML = this.generateOptionsStringFromOptions( options );
+
+		this.filterLabel.innerText = this.getFilterLabelText();
 	};
 
 	Select.fn.generateOptionsStringFromOptions = function( options ){
@@ -133,4 +147,4 @@
 	};
 
 	DualListPicker.MultiSelectBox = Select;
-})( DualListPicker || {}, DualListPicker.Utils );
+})( DualListPicker || {}, DualListPicker.Utils, DualListPicker.Constants );
