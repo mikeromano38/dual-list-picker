@@ -1,0 +1,11 @@
+{
+  "name": "dual-list-picker",
+  "version": "0.0.1",
+  "description": "A widget for large list selections",
+  "main": "dual-list-picker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Romano",
+  "license": "MIT"
+}
