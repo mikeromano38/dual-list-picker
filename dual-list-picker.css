@@ -25,6 +25,7 @@
 .dual-list-picker [class$='select-box'] input[type='search'] {
 	display: block;
 	margin-bottom: 10px;
+	clear: both;
 }
 
 .dual-list-picker [class$='select-box'] select[multiple] {
