@@ -1,4 +1,4 @@
-var DualListPicker = (function(){
+window.DualListPicker = (function(){
 
 		//constructor
 		var Picker = function( el, options, config ){
@@ -21,21 +21,21 @@ var DualListPicker = (function(){
 
 		Picker.fn.getAvailableOptions = function(){
 			return this.getAllOptions().filter(function( opt ){
-				return 	!opt.selected;
+				return !opt.selected;
 			});
 		};
 
 		Picker.fn.getSelectedOptions = function(){
 			return this.getAllOptions().filter(function( opt ){
-				return 	opt.selected;
+				return opt.selected;
 			});
 		};
 
-		Picker.fn.moveItems = function( type, selectedItems ){
+		Picker.fn.moveItems = function( type ){
 
 			var moveFn = function( selectedItems ){
-				var selected = ( type === 'selected' )
-				var self = 	this;
+				var selected = ( type === 'selected' );
+				var self = this;
 
 				selectedItems.forEach(function( item ){
 					for ( var i = 0; i < self.options.length; i++ ){
@@ -47,6 +47,15 @@ var DualListPicker = (function(){
 				});
 
 				this.refresh();
+
+				if ( typeof this.config.onUpdate === 'function' ){
+					this.config.onUpdate({
+						selected: this.getSelectedOptions(),
+						available: this.getAvailableOptions(),
+						all: this.getAllOptions()
+					});
+				}
+
 			}.bind( this );
 			
 			return moveFn;
@@ -58,17 +67,19 @@ var DualListPicker = (function(){
 			this.el.className = this.el.className + ' ' + DualListPicker.Constants.PICKER_CLASSNAME;
 
 			this.availablePicker = new Picker.MultiSelectBox( this, {
-				buttonText: this.config.addButtonText,
+				clearSearchButtonContent: this.config.clearSearchButtonContent,
+				buttonContent: this.config.addButtonContent || 'Add',
 				buttonAction: this.moveItems( 'selected' ),
-				placeHolderText: this.config.placeHolderText,
+				placeholderText: this.config.availablePlaceholderText,
 				className: 'available-' + DualListPicker.Constants.SELECTBOX_CLASSNAME,
 				labelText: this.config.availableLabelText
 			});
 
 			this.selectedPicker = new Picker.MultiSelectBox( this, {
-				buttonText: this.config.removeButtonText,
+				clearSearchButtonContent: this.config.clearSearchButtonContent,
+				buttonContent: this.config.removeButtonContent || 'Remove',
 				buttonAction: this.moveItems( 'available' ),
-				placeHolderText: this.config.placeHolderText,
+				placeholderText: this.config.selectedPlaceholderText,
 				className: 'selected-' + DualListPicker.Constants.SELECTBOX_CLASSNAME,
 				labelText: this.config.selectedLabelText
 			});
@@ -99,4 +110,5 @@ var DualListPicker = (function(){
 		};
 
 		return Picker;
-})();
+	}
+)();

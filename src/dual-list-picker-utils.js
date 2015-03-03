@@ -1,5 +1,5 @@
 (function( DualListPicker ){
-	Utils = {};
+	var Utils = {};
 
 	Utils.attachEventListener = function( el, event, callback, useCapture ){
 		el.addEventListener( event, callback, useCapture );
@@ -10,7 +10,7 @@
 
 		return {
 			remove: removeListener
-		}
+		};
 	};
 
 	DualListPicker.Utils = Utils;

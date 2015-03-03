@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Workbench</title>
+	<link rel="stylesheet" type="text/css" href="./dist/dual-list-picker.min.css">
+	<script type="text/javascript" src="./dist/dual-list-picker.min.js"></script>
+</head>
+<body>
+
+<div id="target"></div>
+
+<script type="text/javascript">
+
+	var selectOptions = [];
+	var _i = 0;
+
+	while ( _i < 20000 ){
+		_i++;
+		selectOptions.push({
+			displayName: 'Option ' + _i,
+			id: _i,
+			selected: _i % 8 === 0
+		});
+	}
+
+	var pickerConfig = {
+		addButtonText: 'Add Option',
+		removeButtonText: 'Remove Option',
+		availableLabelText: 'Available Items',
+		selectedLabelText: 'Selected Items'
+	};
+
+	var target = document.querySelectorAll( '#target' )[ 0 ];
+	var picker = new DualListPicker( target, selectOptions, pickerConfig );
+
+</script>
+</body>
+</html>

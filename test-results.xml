@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.9.8 (Mac OS X)" package="" timestamp="2015-02-27T22:55:44" id="0" hostname="Michaels-MacBook-Pro-2.local" tests="18" errors="0" failures="0" time="0.04">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
+    </properties>
+    <testcase name="should be a constructor" time="0.006" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker definition"/>
+    <testcase name="should render correctly" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instantiation"/>
+    <testcase name="should return all of the options, both selected and unselected" time="0.001" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods getAllOptions"/>
+    <testcase name="should return the options that are not selected" time="0.001" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods getAvailableOptions"/>
+    <testcase name="should return the options that are not selected" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods getSelectedOptions"/>
+    <testcase name="should return a function" time="0.001" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function"/>
+    <testcase name="the returned function should call refresh" time="0.003" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function"/>
+    <testcase name="should return a function that sets the passed items matching options to selected even if id&apos;s are text" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function passing &quot;selected&quot;"/>
+    <testcase name="should call the configs onUpdate function passing the pickerData object" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function passing &quot;selected&quot;"/>
+    <testcase name="should return a function that sets the passed items matching options to available even if id&apos;s are text" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function passing &quot;available&quot;"/>
+    <testcase name="should call the configs onUpdate function passing the pickerData object" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function passing &quot;available&quot;"/>
+    <testcase name="should update a picker based on the current selections in the dom" time="0.003" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function updateOptionsFromDom method"/>
+    <testcase name="should update a the dual-picker if the add button is clicked" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function buttonClicked method"/>
+    <testcase name="should update a the dual-picker if the remove button is clicked" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function buttonClicked method"/>
+    <testcase name="should return all selected options for a sub picker" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function picker_getSelectedOptions"/>
+    <testcase name="should update the filter options and refresh when a search is submitted" time="0.003" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function filtering"/>
+    <testcase name="should filter available options based on the search text" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function filtering"/>
+    <testcase name="should filter selected options based on the search text" time="0.002" classname="PhantomJS 1.9.8 (Mac OS X).DualListPicker instance methods moveItems partial application function filtering"/>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

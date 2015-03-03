@@ -2,12 +2,8 @@
 <html>
 <head>
 	<title>Workbench</title>
-	<link rel="stylesheet" type="text/css" href="dual-list-picker.css">
-
-	<script type="text/javascript" src="dual-list-picker.js"></script>
-	<script type="text/javascript" src="dual-list-picker-utils.js"></script>
-	<script type="text/javascript" src="dual-list-picker-constants.js"></script>
-	<script type="text/javascript" src="dual-list-picker-select-box.js"></script>
+	<link rel="stylesheet" type="text/css" href="./dist/dual-list-picker.css">
+	<script type="text/javascript" src="./dist/dual-list-picker.js"></script>
 </head>
 <body>
 
@@ -16,26 +12,35 @@
  	<script type="text/javascript">
 
  		var selectOptions = [];
- 		var _i = 0;
-
- 		while ( _i < 20000 ){
- 			_i++
- 			selectOptions.push({
- 				displayName: 'Option ' + _i,
- 				id: _i,
- 				selected: _i % 8 === 0 
- 			});
- 		}
 
 		var pickerConfig = {
-			addButtonText: 'Add Option',
-			removeButtonText: 'Remove Option',
+			clearSearchButtonContent: '<span>clear</span>',
+			addButtonContent: '<b>Add Option</b>',
+			removeButtonContent: '<b>Remove Option</b>',
 			availableLabelText: 'Available Items',
-			selectedLabelText: 'Selected Items'
+			selectedLabelText: 'Selected Items',
+			onUpdate: function( pickerData ){
+				console.log( pickerData );
+			}
 		};
 
 		var target = document.querySelectorAll( '#target' )[ 0 ];
 		var picker = new DualListPicker( target, selectOptions, pickerConfig );
+
+
+		var _i = 0;
+
+		while ( _i < 16 ){
+			_i++;
+			selectOptions.push({
+				displayName: 'Option ' + _i,
+				id: _i,
+				selected: _i % 8 === 0
+			});
+		}
+
+		picker.refresh();
+
 
 	</script>
 </body>

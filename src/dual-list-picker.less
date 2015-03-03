@@ -1,0 +1,73 @@
+.dual-list-picker {
+	width: 100%;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+	&:after{
+		content: '';
+		display: table-cell;
+		clear: both;
+	}
+
+	[class$='select-box'] {
+		float: left;
+		position: relative;
+		margin-left: 10px;
+		margin-right: 10px;
+		width: calc( ~"50% - 22px" );
+
+		option {
+			padding-left: 10px;
+		}
+
+		input[type='search']{
+			-webkit-appearance: textField;
+			padding-right: 20px;
+		}
+
+		input[type="search"]::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+		}
+
+		.clear-button {
+			color: #ccc;
+			background: none;
+			border: none;
+			outline: none;
+			height: 14px;
+			padding: 0 3px;
+			font-size: 10px;
+			line-height: 14px;
+			vertical-align: middle;
+			text-align: center;
+			position: absolute;
+			z-index: 10;
+			right: 3px;
+			top: 3px;
+		}
+
+		select[multiple], button, input[type='search'] {
+			display: block;
+			margin-bottom: 10px;
+			clear: both;
+		}
+
+		select[multiple]{
+			width: 100%;
+			min-height: 200px;
+		}
+
+		span.filter-label {
+			display: inline-block;
+			float: right;
+			margin-right: 10px;
+			color: #666;
+			font-size: 12px;
+			vertical-align: middle;
+			line-height: 20px;
+		}
+
+		.search-wrapper, button {
+			float: right;
+		}
+	}
+}
